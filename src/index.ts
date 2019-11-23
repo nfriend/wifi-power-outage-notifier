@@ -16,8 +16,10 @@ module.exports.checkForRecentPings = async () => {
 module.exports.ping = async () => {
   console.log('ping is executing');
 
+  const iftttKeys = JSON.parse(process.env.IFTTT_KEYS);
   const awsDynamoRegion = process.env.AWS_DYNAMO_REGION;
 
+  console.log('iftttKeys:', iftttKeys);
   console.log('awsDynamoRegion:', awsDynamoRegion);
 
   return {

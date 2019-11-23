@@ -28,6 +28,7 @@ functions:
     events:
       - http: POST ping
     environment:
+      IFTTT_KEYS: ${opt:iftttKeysJsonArray}
       AWS_DYNAMO_REGION: ${opt:awsDynamoRegion}
 
 resources:
