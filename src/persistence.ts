@@ -12,7 +12,7 @@ const marshaller = new Marshaller();
 
 export interface WiFiPowerStatus {
   lastPing: number;
-  outage: Boolean;
+  outage: boolean;
 }
 
 export const getStatus = () => {
