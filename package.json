@@ -1,0 +1,36 @@
+{
+  "name": "@nathanfriend/wifi-power-outage-notifier",
+  "version": "1.0.0",
+  "description": "A Lambda function that sends alerts through IFTTT in the case of a WiFi or power outage",
+  "main": "build/index.js",
+  "repository": "git@gitlab.com:nfriend/wifi-power-outage-notifier.git",
+  "author": "Nathan Friend <nathan@gitlab.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc:watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "tslint": "tslint -c tslint.json -p .",
+    "tslint:fix": "tslint -c tslint.json -p . --fix",
+    "prettier": "prettier --check '**/*.ts'",
+    "prettier:fix": "prettier --write '**/*.ts'",
+    "lint": "yarn prettier; yarn tslint",
+    "lint:fix": "yarn prettier:fix; yarn tslint:fix"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "@babel/preset-typescript": "^7.7.4",
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.12",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0",
+    "jest-junit-reporter": "^1.1.0",
+    "prettier": "^1.19.1",
+    "ts-jest": "^24.2.0",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.2"
+  }
+}

@@ -1,0 +1,52 @@
+image: node:latest
+
+stages:
+  - test and build
+  - deploy
+
+before_script:
+  - yarn
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+
+jest:
+  stage: test and build
+  script:
+    - yarn test
+  artifacts:
+    paths:
+      - test-report.xml
+    reports:
+      junit: test-report.xml
+
+tslint:
+  stage: test and build
+  script:
+    - yarn tslint
+
+prettier:
+  stage: test and build
+  script:
+    - yarn prettier
+
+tsc:
+  stage: test and build
+  script:
+    - yarn build
+  artifacts:
+    paths:
+      - build/
+
+production:
+  stage: deploy
+  before_script:
+    - yarn global add serverless --prefix /usr/local
+  script:
+    - serverless deploy --stage production --verbose
+  environment: production
+  only:
+    refs:
+      - master
