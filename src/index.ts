@@ -2,7 +2,7 @@ module.exports.checkForRecentPings = async () => {
   console.log('checkForRecentPings is executing');
 
   const iftttKeys = JSON.parse(process.env.IFTTT_KEYS);
-  const awsDynamoRegion = JSON.parse(process.env.AWS_DYNAMO_REGION);
+  const awsDynamoRegion = process.env.AWS_DYNAMO_REGION;
 
   console.log('iftttKeys:', iftttKeys);
   console.log('awsDynamoRegion:', awsDynamoRegion);
@@ -16,7 +16,7 @@ module.exports.checkForRecentPings = async () => {
 module.exports.ping = async () => {
   console.log('ping is executing');
 
-  const awsDynamoRegion = JSON.parse(process.env.AWS_DYNAMO_REGION);
+  const awsDynamoRegion = process.env.AWS_DYNAMO_REGION;
 
   console.log('awsDynamoRegion:', awsDynamoRegion);
 
