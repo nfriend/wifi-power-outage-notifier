@@ -20,24 +20,24 @@
     "lint:fix": "yarn prettier:fix; yarn tslint:fix"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.4",
-    "@babel/preset-env": "^7.7.4",
-    "@babel/preset-typescript": "^7.7.4",
-    "@types/jest": "^24.0.23",
-    "@types/node": "^12.12.12",
-    "@types/request-promise": "^4.1.45",
-    "babel-jest": "^24.9.0",
-    "jest": "^24.9.0",
-    "jest-junit-reporter": "^1.1.0",
-    "prettier": "^1.19.1",
-    "ts-jest": "^24.2.0",
-    "tslint": "^5.20.1",
-    "typescript": "^3.7.2"
+    "@babel/core": "7.7.4",
+    "@babel/preset-env": "7.7.4",
+    "@babel/preset-typescript": "7.7.4",
+    "@types/jest": "24.0.23",
+    "@types/node": "12.12.12",
+    "@types/request-promise": "4.1.45",
+    "babel-jest": "24.9.0",
+    "jest": "24.9.0",
+    "jest-junit-reporter": "1.1.0",
+    "prettier": "1.19.1",
+    "ts-jest": "24.2.0",
+    "tslint": "5.20.1",
+    "typescript": "3.7.2"
   },
   "dependencies": {
-    "@aws/dynamodb-auto-marshaller": "^0.7.1",
-    "aws-sdk": "^2.578.0",
-    "request": "^2.88.0",
-    "request-promise": "^4.2.5"
+    "@aws/dynamodb-auto-marshaller": "0.7.1",
+    "aws-sdk": "2.578.0",
+    "request": "2.88.0",
+    "request-promise": "4.2.5"
   }
 }
