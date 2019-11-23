@@ -45,7 +45,7 @@ production:
   before_script:
     - yarn global add serverless --prefix /usr/local
   script:
-    - serverless deploy --stage production --verbose
+    - serverless deploy --stage production --verbose --iftttKeysJsonArray "$IFTTT_KEY_JSON_ARRAY" --awsDynamoRegion "$AWS_DYNAMO_REGION"
   environment: production
   only:
     refs:

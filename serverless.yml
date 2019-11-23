@@ -1,0 +1,47 @@
+service: wifi-power-outage-notifier
+provider:
+  name: aws
+  runtime: nodejs10.x
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: 'arn:aws:dynamodb:us-east-1:*:*'
+
+functions:
+  checkForRecentPings:
+    handler: build/index.checkForRecentPings
+    events:
+      - http: POST checkForRecentPings
+      # - schedule: rate(5 minutes)
+    environment:
+      IFTTT_KEYS: ${opt:iftttKeysJsonArray}
+      AWS_DYNAMO_REGION: ${opt:awsDynamoRegion}
+  ping:
+    handler: build/index.ping
+    events:
+      - http: POST ping
+    environment:
+      AWS_DYNAMO_REGION: ${opt:awsDynamoRegion}
+
+resources:
+  Resources:
+    wifiPowerOutageNotifierTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: wifiPowerOutageNotifierTable
+        AttributeDefinitions:
+          - AttributeName: CONFIG_KEY
+            AttributeType: S
+        KeySchema:
+          - AttributeName: CONFIG_KEY
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
