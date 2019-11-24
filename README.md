@@ -15,6 +15,14 @@ This project consists of two Lambda functions:
 
 A device inside the network (for example, a [Raspberry Pi](https://www.raspberrypi.org/)) makes a request to the `ping` endpoint every two minutes.
 
+An example notification when an outage is detected:
+
+![An example of a notification that is sent when an outage is detected](./img/power-off-notification.jpg)
+
+And when the WiFi/power comes back on:
+
+![An example of a notification that is sent when the WiFi or power comes back on](./img/power-on-notification.jpg)
+
 ## Developing
 
 1. Clone this repo: `git clone git@gitlab.com:nfriend/wifi-power-outage-notifier.git`
