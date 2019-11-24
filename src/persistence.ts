@@ -45,7 +45,7 @@ export const getStatus = () => {
 
         const status: WiFiPowerStatus = {
           ...rawStatus,
-          lastPing: moment(rawStatus.lastPing),
+          lastPing: moment.unix(rawStatus.lastPing),
         };
 
         console.info(
