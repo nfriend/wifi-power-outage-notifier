@@ -44,10 +44,13 @@ export const getStatus = () => {
         const rawStatus = (marshaller.unmarshallItem(data.Item)
           .CONFIG_VALUE as unknown) as RawWiFiPowerStatus;
 
-        const status: WiFiPowerStatus = {
-          ...rawStatus,
-          lastPing: moment(rawStatus.lastPing),
-        };
+        let status: WiFiPowerStatus;
+        if (rawStatus) {
+          status = {
+            ...rawStatus,
+            lastPing: moment(rawStatus.lastPing),
+          };
+        }
 
         info(
           'Successfully fetched the current WiFi/power status from the database:',
