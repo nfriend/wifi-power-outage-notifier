@@ -18,7 +18,7 @@ export interface WiFiPowerStatus {
 }
 
 interface RawWiFiPowerStatus {
-  lastPing: number;
+  lastPing: string;
   outage: boolean;
 }
 
@@ -64,7 +64,7 @@ export const setStatus = (status: WiFiPowerStatus) => {
   return new Promise<void>((resolve, reject) => {
     const rawStatus: RawWiFiPowerStatus = {
       ...status,
-      lastPing: status.lastPing.valueOf(),
+      lastPing: status.lastPing.toString(),
     };
 
     const params = {
