@@ -1,5 +1,6 @@
 import { Marshaller } from '@aws/dynamodb-auto-marshaller';
 import * as AWS from 'aws-sdk';
+import moment from 'moment';
 
 AWS.config.update({ region: process.env.AWS_DYNAMO_REGION });
 
@@ -11,6 +12,11 @@ const KEY_NAME = 'wifiPowerStatus';
 const marshaller = new Marshaller();
 
 export interface WiFiPowerStatus {
+  lastPing: moment.Moment;
+  outage: boolean;
+}
+
+interface RawWiFiPowerStatus {
   lastPing: number;
   outage: boolean;
 }
@@ -34,8 +40,13 @@ export const getStatus = () => {
 
         reject(err);
       } else {
-        const status = (marshaller.unmarshallItem(data.Item)
-          .CONFIG_VALUE as unknown) as WiFiPowerStatus;
+        const rawStatus = (marshaller.unmarshallItem(data.Item)
+          .CONFIG_VALUE as unknown) as RawWiFiPowerStatus;
+
+        const status: WiFiPowerStatus = {
+          ...rawStatus,
+          lastPing: moment(rawStatus.lastPing),
+        };
 
         console.info(
           'Successfully fetched the current WiFi/power status from the database:',
@@ -50,11 +61,16 @@ export const getStatus = () => {
 
 export const setStatus = (status: WiFiPowerStatus) => {
   return new Promise<void>((resolve, reject) => {
+    const rawStatus: RawWiFiPowerStatus = {
+      ...status,
+      lastPing: status.lastPing.valueOf(),
+    };
+
     const params = {
       TableName: TABLE_NAME,
       Item: marshaller.marshallItem({
         CONFIG_KEY: KEY_NAME,
-        CONFIG_VALUE: status,
+        CONFIG_VALUE: rawStatus,
       }),
     };
 

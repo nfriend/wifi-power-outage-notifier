@@ -2,7 +2,8 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es2017",
-    "outDir": "build"
+    "outDir": "build",
+    "esModuleInterop": true
   },
   "include": ["src/**.ts"]
 }

@@ -1,23 +1,19 @@
+import { createIftttEvent } from './create-ifttt-event';
+import { getCurrentDate } from './get-current-date';
+import { getIftttKeys } from './get-ifttt-keys';
 import { getStatus, setStatus } from './persistence';
 
-export const checkForRecentPings = async () => {
-  const iftttKeys = JSON.parse(process.env.IFTTT_KEYS);
-  const awsDynamoRegion = process.env.AWS_DYNAMO_REGION;
-
-  console.log('iftttKeys:', iftttKeys);
-  console.log('awsDynamoRegion:', awsDynamoRegion);
-
+export const checkForRecentPings = async (): Promise<void> => {
   const status = await getStatus();
 
   if (status) {
-    await setStatus({
-      lastPing: Date.now(),
-      outage: !status.outage,
-    });
-  } else {
-    await setStatus({
-      lastPing: Date.now(),
-      outage: true,
-    });
+    const fiveMinsAgo = getCurrentDate().subtract(5, 'minutes');
+    if (status.lastPing.isBefore(fiveMinsAgo) && !status.outage) {
+      await createIftttEvent('power-off', getIftttKeys());
+      await setStatus({
+        ...status,
+        outage: true,
+      });
+    }
   }
 };

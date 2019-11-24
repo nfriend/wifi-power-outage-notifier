@@ -19,7 +19,7 @@ functions:
     handler: build/index.checkForRecentPings
     events:
       - http: POST checkForRecentPings
-      # - schedule: rate(5 minutes)
+      - schedule: rate(5 minutes)
     environment:
       IFTTT_KEYS: ${opt:iftttKeysJsonArray}
       AWS_DYNAMO_REGION: ${opt:awsDynamoRegion}
