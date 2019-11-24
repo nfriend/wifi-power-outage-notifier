@@ -8,12 +8,28 @@ export const checkForRecentPings = async (): Promise<void> => {
 
   if (status) {
     const fiveMinsAgo = getCurrentDate().subtract(5, 'minutes');
-    if (status.lastPing.isBefore(fiveMinsAgo) && !status.outage) {
-      await createIftttEvent('power-off', getIftttKeys());
-      await setStatus({
-        ...status,
-        outage: true,
-      });
+    if (status.lastPing.isBefore(fiveMinsAgo)) {
+      if (!status.outage) {
+        await createIftttEvent('power-off', getIftttKeys());
+        await setStatus({
+          ...status,
+          outage: true,
+        });
+
+        console.info(
+          'WiFi or power outage detected! An IFTTT notification has been triggered.',
+        );
+      } else {
+        console.info(
+          'WiFi or power outage was detected, but a notification has already been sent for this outage.',
+        );
+      }
+    } else {
+      console.info('No WiFi or power outage detected');
     }
+  } else {
+    console.info(
+      'No existing status found in the database. No action had been taken.',
+    );
   }
 };
