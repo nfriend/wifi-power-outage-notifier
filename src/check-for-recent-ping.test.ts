@@ -31,6 +31,10 @@ jest.mock('./get-ifttt-keys', () => ({
   getIftttKeys: () => mockIftttKeys,
 }));
 
+jest.mock('./log', () => ({
+  info: jest.fn(),
+}));
+
 describe('checkForRecentPings', () => {
   it('sends an IFTTT notification if the last ping was more than 5 minutes ago', async () => {
     mockStatus = {

@@ -1,4 +1,5 @@
 import * as rp from 'request-promise';
+import { info } from './log';
 
 /**
  * Generates an IFTTT event
@@ -11,8 +12,8 @@ export const createIftttEvent = async (
 ) => {
   for (const key of iftttKeys) {
     const iftttUrl = `https://maker.ifttt.com/trigger/${event}/with/key/${key}`;
-    console.info(`Sending POST request to IFTTT for event "${event}:"`);
+    info(`Sending POST request to IFTTT for event "${event}:"`);
     const iftttResult1 = await rp.post(iftttUrl);
-    console.info('Response from IFTTT:', iftttResult1);
+    info('Response from IFTTT:', iftttResult1);
   }
 };

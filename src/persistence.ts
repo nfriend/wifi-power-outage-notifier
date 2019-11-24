@@ -1,6 +1,7 @@
 import { Marshaller } from '@aws/dynamodb-auto-marshaller';
 import * as AWS from 'aws-sdk';
 import moment from 'moment';
+import { info } from './log';
 
 AWS.config.update({ region: process.env.AWS_DYNAMO_REGION });
 
@@ -48,7 +49,7 @@ export const getStatus = () => {
           lastPing: moment(rawStatus.lastPing),
         };
 
-        console.info(
+        info(
           'Successfully fetched the current WiFi/power status from the database:',
           status,
         );
@@ -82,7 +83,7 @@ export const setStatus = (status: WiFiPowerStatus) => {
         );
         reject(err);
       } else {
-        console.info(
+        info(
           'Successfully updated the WiFi/power status in the database:',
           status,
         );

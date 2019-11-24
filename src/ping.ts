@@ -1,6 +1,7 @@
 import { createIftttEvent } from './create-ifttt-event';
 import { getCurrentDate } from './get-current-date';
 import { getIftttKeys } from './get-ifttt-keys';
+import { info } from './log';
 import { getStatus, setStatus } from './persistence';
 
 export const ping = async (): Promise<void> => {
@@ -9,11 +10,11 @@ export const ping = async (): Promise<void> => {
   if (status && status.outage) {
     await createIftttEvent('power-on', getIftttKeys());
 
-    console.info(
+    info(
       'The WiFi or power has been restored! An IFTTT notification has been triggered.',
     );
   } else {
-    console.info('No existing outage detected.');
+    info('No existing outage detected.');
   }
 
   await setStatus({
@@ -21,5 +22,5 @@ export const ping = async (): Promise<void> => {
     outage: false,
   });
 
-  console.info('Ping successfully recorded');
+  info('Ping successfully recorded');
 };

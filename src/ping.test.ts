@@ -31,6 +31,10 @@ jest.mock('./get-ifttt-keys', () => ({
   getIftttKeys: () => mockIftttKeys,
 }));
 
+jest.mock('./log', () => ({
+  info: jest.fn(),
+}));
+
 describe('ping', () => {
   it('sends an IFTTT notification if there was previously an existing outage', async () => {
     mockStatus = {

@@ -1,6 +1,7 @@
 import { createIftttEvent } from './create-ifttt-event';
 import { getCurrentDate } from './get-current-date';
 import { getIftttKeys } from './get-ifttt-keys';
+import { info } from './log';
 import { getStatus, setStatus } from './persistence';
 
 export const checkForRecentPings = async (): Promise<void> => {
@@ -16,20 +17,18 @@ export const checkForRecentPings = async (): Promise<void> => {
           outage: true,
         });
 
-        console.info(
+        info(
           'WiFi or power outage detected! An IFTTT notification has been triggered.',
         );
       } else {
-        console.info(
+        info(
           'WiFi or power outage was detected, but a notification has already been sent for this outage.',
         );
       }
     } else {
-      console.info('No WiFi or power outage detected');
+      info('No WiFi or power outage detected');
     }
   } else {
-    console.info(
-      'No existing status found in the database. No action had been taken.',
-    );
+    info('No existing status found in the database. No action had been taken.');
   }
 };
