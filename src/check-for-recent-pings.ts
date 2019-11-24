@@ -9,8 +9,15 @@ export const checkForRecentPings = async () => {
 
   const status = await getStatus();
 
-  await setStatus({
-    lastPing: Date.now(),
-    outage: !status.outage,
-  });
+  if (status) {
+    await setStatus({
+      lastPing: Date.now(),
+      outage: !status.outage,
+    });
+  } else {
+    await setStatus({
+      lastPing: Date.now(),
+      outage: true,
+    });
+  }
 };
