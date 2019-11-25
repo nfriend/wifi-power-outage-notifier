@@ -23,6 +23,17 @@ And when the WiFi/power comes back on:
 
 ![An example of a notification that is sent when the WiFi or power comes back on](./img/power-on-notification.jpg)
 
+## Setting up the "pinger"
+
+1. `ssh` into the machine inside your network that will be sending the pings.
+1. Copy [ping.sh](./src/ping.sh) to `/usr/local/bin/ping.sh`
+1. Replace every instance of `<insert ping endpoint URL here>` in the script with the the URL of the ping endpoint.
+   1. You can find this endpoint in the `production` job's logs in this project's CI pipeline.
+1. Make the new script executable: `chmod u+x ping.sh`
+1. Configure the script to run every 2 minutes:
+   1. `crontab -e`
+   1. Add `*/2 * * * * /usr/local/bin/ping.sh` to the bottom of the file and save
+
 ## Developing
 
 1. Clone this repo: `git clone git@gitlab.com:nfriend/wifi-power-outage-notifier.git`
