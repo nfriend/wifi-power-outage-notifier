@@ -29,10 +29,11 @@ And when the WiFi/power comes back on:
 1. Copy [ping.sh](./src/ping.sh) to `/usr/local/bin/ping.sh`
 1. Replace every instance of `<insert ping endpoint URL here>` in the script with the the URL of the ping endpoint.
    1. You can find this endpoint in the `production` job's logs in this project's CI pipeline.
-1. Make the new script executable: `chmod u+x ping.sh`
+1. Make the new script executable: `sudo chmod 755 /usr/local/bin/ping.sh`
 1. Configure the script to run every 2 minutes:
    1. `crontab -e`
    1. Add `*/2 * * * * /usr/local/bin/ping.sh` to the bottom of the file and save
+      1. To debug: `*/2 * * * * /usr/local/bin/ping.sh >> /home/pi/ping.log 2>&1` and `tail -f /home/pi/ping.log`
 
 ## Developing
 
