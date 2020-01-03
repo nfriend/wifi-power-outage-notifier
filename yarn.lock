@@ -971,10 +971,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.12.tgz#529bc3e73dbb35dd9e90b0a1c83606a9d3264bdb"
   integrity sha512-MGuvYJrPU0HUwqF7LqvIj50RZUX23Z+m583KBygKYUZLlZ88n6w28XRNJRJgsHukLEnLz6w6SvxZoLgbr5wLqQ==
 
-"@types/node@12.12.22":
-  version "12.12.22"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.22.tgz#b8d9eae3328b96910a373cf06ac8d3c5abe9c200"
-  integrity sha512-r5i93jqbPWGXYXxianGATOxTelkp6ih/U0WVnvaqAvTqM+0U6J3kw6Xk6uq/dWNRkEVw/0SLcO5ORXbVNz4FMQ==
+"@types/node@12.12.23":
+  version "12.12.23"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.23.tgz#e82e3b4dca7e840b53ebbefd3a0f3d4ddfc332fa"
+  integrity sha512-mHScXQHFSGNmJQq8O3nQMUA8IBtRxXCwBlSpxaPRFaSsFl7HxNuk569j6WUzjcud6Ew5LIHhuGQ/kAH7J0E7zA==
 
 "@types/request-promise@4.1.45":
   version "4.1.45"
