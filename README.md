@@ -70,3 +70,8 @@ When creating the IAM user for this project, grant the user the following permis
 - `AWSCloudFormationFullAccess`
 
 ![A screenshot of IAM's management console showing the necessary permissions](img/iam-permissions.png)
+
+## Note
+
+As fun as this was to develop, I've since discovered [Huginn](https://github.com/huginn/huginn), which is much simpler than this DIY solution!
+This functionality can be replicated using the [Gap Detector Agent](https://huginnio.herokuapp.com/agents#GapDetectorAgent).
