@@ -20,9 +20,9 @@
     "lint:fix": "yarn prettier:fix; yarn tslint:fix"
   },
   "devDependencies": {
-    "@babel/core": "7.12.3",
-    "@babel/preset-env": "7.12.1",
-    "@babel/preset-typescript": "7.12.1",
+    "@babel/core": "7.12.7",
+    "@babel/preset-env": "7.12.7",
+    "@babel/preset-typescript": "7.12.7",
     "@types/jest": "26.0.15",
     "@types/node": "12.19.6",
     "@types/request-promise": "4.1.46",
