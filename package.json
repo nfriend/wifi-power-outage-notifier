@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@aws/dynamodb-auto-marshaller": "0.7.1",
-    "aws-sdk": "2.796.0",
+    "aws-sdk": "2.797.0",
     "moment": "2.29.1",
     "request": "2.88.2",
     "request-promise": "4.2.6"
